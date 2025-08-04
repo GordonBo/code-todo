@@ -1,0 +1,65 @@
+@if(isOnEdit()){
+<li appTodoCompletedStyle [isCompleted]="todo().isCompleted" class="todo-item">
+  <input
+    #inputRef
+    fluid
+    pInputText
+    variant="outlined"
+    id="inputId-{{ todo().id }}"
+    [value]="editedTitle()"
+    (input)="editedTitle.set(inputRef.value)"
+  />
+  <div>
+    <p-button
+      icon="pi pi-save"
+      severity="success"
+      (click)="saveTodo()"
+      size="large"
+      [rounded]="true"
+      [text]="true"
+    />
+    <p-button
+      severity="secondary"
+      icon="pi pi-times"
+      [rounded]="true"
+      size="large"
+      [text]="true"
+      (click)="cancelTodo()"
+    />
+  </div>
+</li>
+}@else {
+<li appTodoCompletedStyle [isCompleted]="todo().isCompleted">
+  <span style="line-height: 40px">
+    <input
+      id="inputId-{{ todo().id }}"
+      [checked]="todo().isCompleted"
+      type="checkbox"
+      (change)="this.markOrUnmarkTodoCompleted()"
+      style="cursor: pointer"
+    />
+    <label style="cursor: pointer" for="inputId-{{ todo().id }}">{{
+      todo().title
+    }}</label></span
+  >
+  <span>
+    @if(!todo().isCompleted){
+    <p-button
+      severity="secondary"
+      icon="pi pi-pencil"
+      [rounded]="true"
+      [text]="true"
+      (click)="editTodo()"
+    />
+    }
+
+    <p-button
+      severity="danger"
+      icon="pi pi-trash"
+      [rounded]="true"
+      [text]="true"
+      (click)="deleteTodo()"
+    />
+  </span>
+</li>
+}

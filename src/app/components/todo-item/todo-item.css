@@ -1,0 +1,22 @@
+li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none; /* optional: hides default bullet */
+  flex-wrap: nowrap; /* prevents buttons from wrapping */
+}
+
+.todo-item input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.todo-item div {
+  display: flex;
+  flex-direction: row;
+}

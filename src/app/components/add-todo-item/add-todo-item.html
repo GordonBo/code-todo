@@ -1,0 +1,60 @@
+<form [formGroup]="addNewTodoForm" (submit)="onAddNewTodo()">
+  <div class="addNewinputGroup">
+    <div class="titleInput">
+      <input
+        fluid
+        pInputText
+        placeholder="Add new todo item..."
+        formControlName="newTodoTitle"
+        name="newTodoTitle"
+        type="text"
+        pSize="large"
+        [invalid]="isNewTodoTitleInvalid"
+      />
+      @if (isNewTodoTitleInvalid) {
+      <p-message severity="error" size="small" variant="simple"
+        >Todo item is required.</p-message
+      >
+      }
+    </div>
+    <div class="datePicker">
+      <p-datepicker
+        fluid="true"
+        [minDate]="minDate"
+        formControlName="newDueDate"
+        name="newDueDate"
+        size="large"
+        dateFormat="dd/mm/yy"
+        placeholder="Due Date"
+        showIcon
+        iconDisplay="input"
+        [invalid]="isDueDateInvalid"
+      />
+      @if (isDueDateInvalid) {
+      <p-message severity="error" size="small" variant="simple"
+        >Due Date is required.</p-message
+      >
+      }
+    </div>
+    <div class="btnGroup">
+      <p-button
+        label="Reset"
+        icon="pi pi-refresh"
+        size="large"
+        fluid="true"
+        class="resetBtn"
+        outlined="true"
+        (onClick)="reset()"
+      />
+      <p-button
+        class="submitBtn"
+        type="submit"
+        label="Add"
+        icon="pi pi-plus"
+        size="large"
+        fluid="true"
+      />
+    </div>
+  </div>
+</form>
+<app-page-loading [isLoading]="isProcessing()" />

@@ -1,0 +1,47 @@
+<nav>
+  <h2>Todo List</h2>
+</nav>
+
+<app-add-todo-item (refreshList)="this.refreshList($event)" />
+<p-tabs [(value)]="selectedTab" (valueChange)="this.onTabChange($event)">
+  <p-tablist>
+    @for (tab of tabs; track tab.value) {
+    <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+    }
+  </p-tablist>
+
+  <p-tabpanels>
+    @for (tab of tabs; track tab.value) {
+    <p-tabpanel [value]="tab.value">
+      @if(isLoading()){
+      <p-progressSpinner class="spinner-center"></p-progressSpinner>
+      }@else { @if(todoItems().length<1){
+      <h6>No available todo item found</h6>
+      }
+      <ul>
+        @for (item of todoItems(); track item.dueDate) {
+        <li>
+          <div style="padding-bottom: 12px">
+            <span
+              style="font-weight: 600"
+              [style.color]="this.selectedTab() === 1 ? 'red' : 'inherit'"
+              >Due Date: {{ item.dueDate }}</span
+            >
+          </div>
+          <ul style="padding-left: 8px">
+            @for (todo of item.items; track todo.id) {
+            <app-todo-item
+              [todo]="todo"
+              (todoChange)="changeTodo($event)"
+              (deletedTodoId)="deleteTodo($event)"
+            />
+            }
+          </ul>
+        </li>
+        }
+      </ul>
+      }
+    </p-tabpanel>
+    }
+  </p-tabpanels>
+</p-tabs>

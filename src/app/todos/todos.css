@@ -1,0 +1,56 @@
+nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.addNewinputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.titleInput {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btnGroup {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: end;
+}
+
+@media (max-width: 600px) {
+  .btnGroup {
+    flex-direction: column;
+  }
+}
+
+.datePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.spinner-center {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
